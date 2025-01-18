@@ -6,7 +6,7 @@ extends NodeState
 @export_category("Fall State")
 @export var coyote_time: float = 0.1
 
-cosnt GRABITY: int = 700
+const GRAVITY: int = 700
 var coyote_jump: bool
 
 
@@ -28,7 +28,7 @@ func on_physics_process(delta: float):
 			transition.emit("Idle")
 			
 		# jump state
-		if GameInputEvents.jump_input() and coyote_Jump:
+		if GameInputEvents.jump_input() and coyote_jump:
 			transition.emit("Jump")
 			
 			
@@ -42,5 +42,5 @@ func exit():
 	
 
 func get_coyote_time():
-	await get_tree().create_timer(coyote_timer).timeout
+	await get_tree().create_timer(coyote_time).timeout
 	coyote_jump = false

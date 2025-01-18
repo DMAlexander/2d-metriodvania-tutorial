@@ -3,7 +3,7 @@ extends Node
 
 signal transition
 
-func on_process(delta: flaot):
+func on_process(delta: float):
 	pass
 	
 func on_physics_process(delta: float):

@@ -1,6 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://ng6656nwho30"]
+[gd_scene load_steps=20 format=3 uid="uid://ng6656nwho30"]
 
 [ext_resource type="Texture2D" uid="uid://cd5yydhchk74i" path="res://player/player-idle.png" id="1_e6g16"]
+[ext_resource type="Script" path="res://player/player.gd" id="1_mhm5a"]
 [ext_resource type="Texture2D" uid="uid://dr5my7bhtk8ug" path="res://player/player-run.png" id="2_c4c76"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w2ett"]
@@ -125,6 +126,7 @@ height = 30.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
+script = ExtResource("1_mhm5a")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
