@@ -22,7 +22,7 @@ func on_physics_process(delta: float):
 		transition.emit("Fall")
 	
 	# run state
-	var direction: float = GameInputEvents.move_input()
+	var direction: float = GameInputEvents.movement_input()
 	
 	if direction and character_body_2d.is_on_floor():
 		transition.emit("Run")

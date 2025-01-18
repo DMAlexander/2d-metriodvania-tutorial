@@ -18,7 +18,7 @@ func on_process(delta: float):
 	
 	
 func on_physics_process(delta: float):
-	
+
 	character_body_2d.velocity.y += jump_gravity * delta
 	
 	if character_body_2d.is_on_floor():
