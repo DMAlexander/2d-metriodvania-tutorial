@@ -110,7 +110,7 @@ func player_muzzle_position():
 
 
 func player_animations():
-	print("Current State: ", current_state)
+#	print("Current State: ", current_state)
 	if current_state == State.Idle:
 		animated_sprite_2d.play("idle")
 	elif current_state == State.Run and animated_sprite_2d.animation != "run_shoot":
@@ -125,6 +125,20 @@ func input_movement():
 	var direction: float = Input.get_axis("move_left", "move_right")
 	
 	return direction
+
+
+func _on_hurtbox_body_entered(body: Node2D) -> void:
+	if body.is_in_group("Enemy"):
+		print("Enemy entered ", body.damage_amount)
+
+#		var tween = get_tree().create_tween()
+#		tween.tween_property(animated_sprite_2d, "material:shader_parameter/enabled", true, 0)
+#		tween.tween_property(animated_sprite_2d, "material:shader_parameter/enabled", false, 0.2)
+#
+		HealthManager.decrease_health(body.damage_amount)
+		
+#	if HealthManager.current_health == 0:
+#		player_death()
 
 #var bullet = preload("res://player/bullet.gd")
 #var player_death_effect = preload("res://player/player_death_effect/player_death_effect.tscn")
