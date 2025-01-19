@@ -4,6 +4,7 @@ var bullet = preload("res://player/bullet.tscn")
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var muzzle: Marker2D = $Muzzle
+@onready var hit_animation_player: AnimationPlayer = $HitAnimationPlayer
 
 const GRAVITY = 1000
 @export var speed: int = 1000
@@ -130,6 +131,7 @@ func input_movement():
 func _on_hurtbox_body_entered(body: Node2D) -> void:
 	if body.is_in_group("Enemy"):
 		print("Enemy entered ", body.damage_amount)
+		hit_animation_player.play("hit")
 
 #		var tween = get_tree().create_tween()
 #		tween.tween_property(animated_sprite_2d, "material:shader_parameter/enabled", true, 0)
