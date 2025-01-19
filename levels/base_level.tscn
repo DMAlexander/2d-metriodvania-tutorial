@@ -126,3 +126,8 @@ layer_0/tile_data = PackedInt32Array(-131072, 983040, 8, -65536, 983040, 8, -131
 position = Vector2(123, -94)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+limit_left = 0
+limit_top = -348
+limit_right = 1690
+limit_bottom = 0
+editor_draw_limits = true
