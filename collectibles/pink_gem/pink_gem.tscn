@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd8h2ikaer5ns"]
+
+[ext_resource type="Script" path="res://collectibles/pink_gem/pink_gem.gd" id="1_df8hb"]
+
+[node name="PinkGem" type="Node2D"]
+script = ExtResource("1_df8hb")

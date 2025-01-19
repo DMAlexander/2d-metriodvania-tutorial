@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dc3w7cf3rymcq"]
+
+[ext_resource type="Script" path="res://collectibles/blue_coin/blue_coin.gd" id="1_sbtdo"]
+
+[node name="BlueCoin" type="Node2D"]
+script = ExtResource("1_sbtdo")

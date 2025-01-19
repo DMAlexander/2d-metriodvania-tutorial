@@ -16,7 +16,7 @@ func _on_exit_area_2d_body_entered(body):
 		player.queue_free()
 		
 	await get_tree().create_timer(3.0).timeout
-	SceneManager.transition_to_scene(next_scnee)
+	SceneManager.transition_to_scene(next_scene)
 	
 	
 func _on_activate_door_area_2d_body_entered(body):

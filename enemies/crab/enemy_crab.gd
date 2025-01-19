@@ -11,11 +11,11 @@ var enemy_death_effect = preload("res://enemies/enemy_death_effect.gd")
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var timer = $Timer
 
-const GRABITY = 1000
+const GRAVITY = 1000
 
 enum State { Idle, Walk }
 var current_state: State
-var direction: Vector2 = Vector2.KEY_LEFT
+var direction: Vector2 = Vector2.LEFT
 var number_of_points: int
 var point_positions: Array[Vector2]
 var current_point: Vector2
@@ -32,9 +32,9 @@ func _ready():
 	else:
 		print("No patrol points")
 		
-	timer.wait_time = wait_time
+#	timer.wait_time = wait_time
 	
-	current_state = State.Idle
+#	current_state = State.Idle
 	
 	
 func _physics_process(delta: float):
@@ -47,7 +47,7 @@ func _physics_process(delta: float):
 	enemy_animations()
 	
 	
-func enemy_grabity(delta: float):
+func enemy_gravity(delta: float):
 	velocity.y += GRAVITY * delta
 	
 	
@@ -57,7 +57,7 @@ func enemy_idle(delta: float):
 		current_state = State.Idle
 		
 		
-func enemy_walk(delta: flaot):
+func enemy_walk(delta: float):
 	if !can_walk:
 		return
 		
@@ -65,7 +65,7 @@ func enemy_walk(delta: flaot):
 		velocity.x = direction.x * speed * delta
 		current_state = State.Walk
 	else:
-		current_position_position += 1
+		current_point_position += 1
 		
 		if current_point_position >= number_of_points:
 			current_point_position = 0
@@ -86,7 +86,7 @@ func enemy_walk(delta: flaot):
 func enemy_animations():
 	if current_state == State.Idle && !can_walk:
 		animated_sprite_2d.play("idle")
-	else current_state == State.Walk && can_walk:
+	elif current_state == State.Walk && can_walk:
 		animated_sprite_2d.play("walk")
 		
 func _on_timer_timeout():

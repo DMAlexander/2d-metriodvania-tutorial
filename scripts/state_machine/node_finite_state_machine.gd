@@ -28,7 +28,7 @@ func _physics_process(delta: float):
 	print("Current State: ", current_node_state_name.to_lower())
 	
 	
-func transition_to(node_state_name: string):
+func transition_to(node_state_name: String):
 	if node_state_name == current_node_state.name.to_lower():
 		return
 		

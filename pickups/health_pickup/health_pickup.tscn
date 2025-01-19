@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://j1kck3p0qahr"]
+
+[ext_resource type="Script" path="res://pickups/health_pickup/health_pickup.gd" id="1_1svx1"]
+
+[node name="HealthPickup" type="Node2D"]
+script = ExtResource("1_1svx1")

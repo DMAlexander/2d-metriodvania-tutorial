@@ -21,7 +21,7 @@ func _ready():
 	for resolution in resolutions:
 		resolution_option_button.add_item(resolution)
 		
-	initialize_controls()
+#	initialize_controls()
 
 
 func initialize_controls():
@@ -37,7 +37,7 @@ func _on_window_mode_option_button_item_selected(index):
 	
 	
 func _on_resolution_option_button_item_selected(index):
-	var resolution = resolutions.get(resolution_option-button.get_item_text(index)) as Vector2i
+	var resolution = resolutions.get(resolution_option_button.get_item_text(index)) as Vector2i
 	SettingsManager.set_resolution(resolution, index)
 	
 	

@@ -12,4 +12,4 @@ func on_collectible_award_received(total_award: int):
 
 
 func _on_pause_texture_button_pressed():
-	GameManger.pause_game()
+	GameManager.pause_game()

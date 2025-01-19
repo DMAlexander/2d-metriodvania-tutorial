@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://05pihdhevn5f"]
+
+[ext_resource type="Script" path="res://collectibles/green_diamond/green_diamond.gd" id="1_wkhuj"]
+
+[node name="GreenDiamond" type="Node2D"]
+script = ExtResource("1_wkhuj")

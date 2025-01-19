@@ -24,12 +24,12 @@ func load_settings():
 
 func set_window_mode(window_mode: int, window_mode_index: int):
 	match window_mode:
-		DispalyServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
-			DisplayServer.window_set_mdoe(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+		DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		DisplayServer.WINDOW_MODE_WINDOWED:
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-		DisplayServer.WINODW_MODE_MAXIMIZED:
-			DisplayServer.window_set_mode(DispalyServer.WINODW_MODE_MAXIMIZED)
+		DisplayServer.WINDOW_MODE_MAXIMIZED:
+			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_MAXIMIZED)
 			
 			DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
 			
@@ -48,5 +48,5 @@ func get_settings() -> SettingsDataResource:
 	
 	
 func save_settings():
-	ResourceSaver.save(settings_data, save_setting_path + save_file_name)
+	ResourceSaver.save(settings_data, save_settings_path + save_file_name)
 	

@@ -3,17 +3,17 @@ extends NodeState
 var bullet = preload("res://player/bullet.tscn")
 
 @export var character_body_2d: CharacterBody2D
-@export var aniamted_sprite_2d: AniamtedSprite2D
+@export var animated_sprite_2d: AnimatedSprite2D
 @export var muzzle: Marker2D
 
 @export_category("Run State")
 @export var speed: int = 1000
 @export var max_horizontal_speed: int = 300
 
-const GRAVITY: int 1000
+const GRAVITY: int = 1000
 var muzzle_position: Vector2
 
-func on_process(delta: flaot):
+func on_process(delta: float):
 	pass
 	
 
@@ -26,7 +26,7 @@ func on_physics_process(delta: float):
 		character_body_2d.velocity.x += direction * speed
 		character_body_2d.velocity.x = clamp(character_body_2d.velocity.x, -max_horizontal_speed, max_horizontal_speed)
 		
-	if direction != 0
+	if direction != 0:
 		animated_sprite_2d.flip_h = false if direction > 0 else true
 		
 	character_body_2d.velocity.y += GRAVITY * delta
@@ -59,7 +59,7 @@ func enter():
 	
 	
 func exit():
-	aniamted_sprite_2d.stop()
+	animated_sprite_2d.stop()
 	
 	
 func gun_muzzle_position(direction: float):
