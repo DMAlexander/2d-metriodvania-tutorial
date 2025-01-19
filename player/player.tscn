@@ -138,7 +138,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_exgeo")
 }],
-"loop": false,
+"loop": true,
 "name": &"jump",
 "speed": 12.0
 }, {
@@ -192,7 +192,7 @@ script = ExtResource("1_mhm5a")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_l38o5")
-animation = &"idle"
+animation = &"jump"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
