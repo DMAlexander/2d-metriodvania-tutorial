@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
 @export var patrol_points: Node
+@export var speed: int = 1500
+@export var wait_time: int = 3
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer: Timer = $Timer
 
 const GRAVITY = 1000
-const SPEED = 1500
 
 enum State { Idle, Walk }
 var current_state: State
@@ -25,6 +26,8 @@ func _ready():
 		current_point = point_positions[current_point_position]
 	else:
 		print("No patrol points")
+		
+	timer.wait_time = wait_time
 	
 	current_state = State.Idle
 	
@@ -45,7 +48,7 @@ func enemy_gravity(delta: float):
 
 func enemy_idle(delta: float):
 	if !can_walk:
-		velocity.x = move_toward(velocity.x, 0, SPEED * delta)
+		velocity.x = move_toward(velocity.x, 0, speed * delta)
 		current_state = State.Idle
 	
 	
@@ -54,7 +57,7 @@ func enemy_walk(delta: float):
 		return
 		
 	if abs(position.x - current_point.x) > 0.5:
-		velocity.x = direction.x * SPEED * delta
+		velocity.x = direction.x * speed * delta
 		current_state = State.Walk
 	else:
 		current_point_position += 1
