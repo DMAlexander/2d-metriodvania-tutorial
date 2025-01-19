@@ -88,14 +88,17 @@ script = ExtResource("1_cfeti")
 position = Vector2(0, -14)
 sprite_frames = SubResource("SpriteFrames_lojls")
 animation = &"idle"
-frame = 2
-frame_progress = 0.469606
+autoplay = "idle"
+frame = 3
+frame_progress = 0.435855
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_0x5pa")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
 
 [node name="Hurtbox" type="Area2D" parent="."]
 

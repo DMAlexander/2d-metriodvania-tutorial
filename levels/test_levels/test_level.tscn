@@ -14,13 +14,14 @@ layer_0/tile_data = PackedInt32Array(-131072, 983040, 8, -65536, 983040, 8, -131
 [node name="Player" parent="." index="2"]
 position = Vector2(117, -80)
 
-[node name="EnemyCrab" parent="." index="3" instance=ExtResource("2_iykn2")]
-position = Vector2(249, -88)
+[node name="EnemyCrab" parent="." index="3" node_paths=PackedStringArray("patrol_points") instance=ExtResource("2_iykn2")]
+position = Vector2(248, -81)
+patrol_points = NodePath("PatrolPoints")
 
 [node name="PatrolPoints" type="Node2D" parent="EnemyCrab" index="2"]
 
 [node name="Point1" type="Marker2D" parent="EnemyCrab/PatrolPoints" index="0"]
-position = Vector2(-43, 3)
+position = Vector2(-43, 0)
 
 [node name="Point2" type="Marker2D" parent="EnemyCrab/PatrolPoints" index="1"]
-position = Vector2(169, 4)
+position = Vector2(158, 0)

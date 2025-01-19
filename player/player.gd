@@ -3,19 +3,19 @@ extends CharacterBody2D
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 
 const GRAVITY = 1000
-const SPEED = 300
-const JUMP = -300
-const JUMP_HORIZONTAL = 100
+@export var speed: int = 300
+@export var jump: int = -300
+@export var jump_horizontal: int = 100
 
 enum State { Idle, Run, Jump }
 
-var current_state
+var current_state: State
 
 func _ready():
 	current_state = State.Idle
 	
 	
-func _physics_process(delta):
+func _physics_process(delta: float):
 	player_falling(delta)
 	player_idle(delta)
 	player_run(delta)
@@ -26,7 +26,7 @@ func _physics_process(delta):
 	player_animations()
 	
 	
-func player_falling(delta):
+func player_falling(delta : float):
 	if !is_on_floor():
 		velocity.y += GRAVITY * delta
 		
@@ -40,12 +40,12 @@ func player_run(delta):
 	if !is_on_floor():
 		return
 	
-	var direction = Input.get_axis("move_left", "move_right")
+	var direction = input_movement()
 	
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
 		
 	if direction != 0:
 		current_state = State.Run
@@ -54,12 +54,12 @@ func player_run(delta):
 		
 func player_jump(delta):
 	if Input.is_action_just_pressed("jump"):
-		velocity.y = JUMP
+		velocity.y = jump
 		current_state = State.Jump
 		
 	if !is_on_floor() and current_state == State.Jump:
-		var direction = Input.get_axis("move_left", "move_right")
-		velocity.x += direction * JUMP_HORIZONTAL * delta
+		var direction = input_movement()
+		velocity.x += direction * jump_horizontal * delta
 
 func player_animations():
 	print("Current State: ", current_state)
@@ -69,6 +69,12 @@ func player_animations():
 		animated_sprite_2d.play("run")
 	elif current_state == State.Jump:
 		animated_sprite_2d.play("jump")
+
+
+func input_movement():
+	var direction: float = Input.get_axis("move_left", "move_right")
+	
+	return direction
 
 #var bullet = preload("res://player/bullet.gd")
 #var player_death_effect = preload("res://player/player_death_effect/player_death_effect.tscn")
