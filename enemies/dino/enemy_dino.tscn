@@ -1,0 +1,160 @@
+[gd_scene load_steps=22 format=3 uid="uid://cju1v5owpfubj"]
+
+[ext_resource type="Texture2D" uid="uid://cv3x4ktrpdhti" path="res://enemies/dino/dino.png" id="1_3ywxw"]
+[ext_resource type="Texture2D" uid="uid://de3im4rc44p57" path="res://enemies/dino/dino-idle.png" id="1_5f131"]
+[ext_resource type="Script" path="res://enemies/dino/gravity.gd" id="3_urye0"]
+[ext_resource type="Script" path="res://enemies/dino/state_machine_controller.gd" id="4_fadlv"]
+[ext_resource type="Script" path="res://scripts/state_machine/node_finite_state_machine.gd" id="4_twach"]
+[ext_resource type="Script" path="res://enemies/dino/idle_state.gd" id="5_5e4wu"]
+[ext_resource type="Script" path="res://enemies/dino/attack_state.gd" id="6_kswg7"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t1u6o"]
+atlas = ExtResource("1_3ywxw")
+region = Rect2(0, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7sche"]
+atlas = ExtResource("1_3ywxw")
+region = Rect2(32, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mrms"]
+atlas = ExtResource("1_3ywxw")
+region = Rect2(64, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gxcvv"]
+atlas = ExtResource("1_3ywxw")
+region = Rect2(96, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojrqq"]
+atlas = ExtResource("1_3ywxw")
+region = Rect2(128, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gb6de"]
+atlas = ExtResource("1_3ywxw")
+region = Rect2(160, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lyhrv"]
+atlas = ExtResource("1_3ywxw")
+region = Rect2(192, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_44uxu"]
+atlas = ExtResource("1_5f131")
+region = Rect2(0, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p4h17"]
+atlas = ExtResource("1_5f131")
+region = Rect2(32, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_adc00"]
+atlas = ExtResource("1_5f131")
+region = Rect2(64, 0, 32, 26)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3v21"]
+atlas = ExtResource("1_5f131")
+region = Rect2(96, 0, 32, 26)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gjq65"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t1u6o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7sche")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2mrms")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gxcvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojrqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gb6de")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lyhrv")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_44uxu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p4h17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adc00")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3v21")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h6y0t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_iej2a"]
+radius = 49.0102
+
+[node name="EnemyDino" type="CharacterBody2D"]
+collision_layer = 4
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -13)
+sprite_frames = SubResource("SpriteFrames_gjq65")
+animation = &"attack"
+autoplay = "idle"
+frame = 6
+frame_progress = 0.345587
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_h6y0t")
+
+[node name="Gravity" type="Node" parent="." node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+script = ExtResource("3_urye0")
+character_body_2d = NodePath("..")
+animated_sprite_2d = NodePath("../AnimatedSprite2D")
+
+[node name="StateMachineController" type="Node" parent="." node_paths=PackedStringArray("node_finite_state_machine")]
+script = ExtResource("4_fadlv")
+node_finite_state_machine = NodePath("../StateMachine")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_node_state")]
+script = ExtResource("4_twach")
+initial_node_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+script = ExtResource("5_5e4wu")
+character_body_2d = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("character_body_2d", "animated_sprite_2d")]
+script = ExtResource("6_kswg7")
+character_body_2d = NodePath("../..")
+animated_sprite_2d = NodePath("../../AnimatedSprite2D")
+speed = 200
+
+[node name="AttackArea2D" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D"]
+position = Vector2(0, -10)
+shape = SubResource("CircleShape2D_iej2a")
+debug_color = Color(0.685244, 0.499744, 0.0795382, 0.42)
+
+[connection signal="area_entered" from="AttackArea2D" to="Gravity" method="_on_attack_area_2d_area_entered"]
+[connection signal="body_entered" from="AttackArea2D" to="StateMachineController" method="_on_attack_area_2d_body_entered"]
+[connection signal="body_exited" from="AttackArea2D" to="StateMachineController" method="_on_attack_area_2d_body_exited"]

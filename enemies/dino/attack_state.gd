@@ -29,7 +29,7 @@ func on_physics_process(delta: float):
 	
 	
 func enter():
-	player = get_tree().get_nods_in_group("Player")[0] as CharacterBody2D
+	player = get_tree().get_nodes_in_group("Player")[0] as CharacterBody2D
 	max_speed = speed + 20
 
 

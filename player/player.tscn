@@ -261,7 +261,7 @@ height = 28.5714
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n0mak"]
 height = 38.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_layer = 3
 script = ExtResource("1_mhm5a")
 
