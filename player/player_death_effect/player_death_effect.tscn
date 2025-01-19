@@ -1,3 +1,3 @@
 [gd_scene format=3 uid="uid://bd44hab7wtuja"]
 
-[node name="PlayerDeathEffect" type="Node2D"]
+[node name="PlayerDeathEffect" type="AnimatedSprite2D"]
