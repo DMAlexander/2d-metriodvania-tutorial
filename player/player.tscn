@@ -1,9 +1,19 @@
-[gd_scene load_steps=27 format=3 uid="uid://ng6656nwho30"]
+[gd_scene load_steps=38 format=3 uid="uid://ng6656nwho30"]
 
 [ext_resource type="Texture2D" uid="uid://cd5yydhchk74i" path="res://player/player-idle.png" id="1_e6g16"]
 [ext_resource type="Script" path="res://player/player.gd" id="1_mhm5a"]
 [ext_resource type="Texture2D" uid="uid://dr5my7bhtk8ug" path="res://player/player-run.png" id="2_c4c76"]
 [ext_resource type="Texture2D" uid="uid://jrun2ri75jjm" path="res://player/player-jump.png" id="3_8rvb7"]
+[ext_resource type="Script" path="res://scripts/state_machine/node_finite_state_machine.gd" id="5_mtbob"]
+[ext_resource type="Script" path="res://player/player_states/idle_state.gd" id="5_pa3j8"]
+[ext_resource type="Script" path="res://player/player_states/fall_state.gd" id="6_pdi8b"]
+[ext_resource type="Script" path="res://player/player_states/run_state.gd" id="7_657tl"]
+[ext_resource type="Script" path="res://player/player_states/jump_state.gd" id="8_3564l"]
+[ext_resource type="Script" path="res://player/player_states/shoot_stand_state.gd" id="9_ywu4a"]
+[ext_resource type="Script" path="res://player/player_states/shoot_up_state.gd" id="10_x6wvi"]
+[ext_resource type="Script" path="res://player/player_states/shoot_crouch_state.gd" id="11_fxcqm"]
+[ext_resource type="Script" path="res://player/player_states/shoot_run_state.gd" id="13_4hg8s"]
+[ext_resource type="Script" path="res://player/player_states/shoot_wall_cling_state.gd" id="14_crddm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w2ett"]
 atlas = ExtResource("1_e6g16")
@@ -170,7 +180,10 @@ animations = [{
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4y8vc"]
 radius = 9.0
-height = 30.0
+height = 28.5714
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_n0mak"]
+height = 38.0
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
@@ -179,12 +192,51 @@ script = ExtResource("1_mhm5a")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -24)
 sprite_frames = SubResource("SpriteFrames_l38o5")
-animation = &"jump"
+animation = &"idle"
 autoplay = "idle"
-frame = 4
-frame_progress = 0.923082
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -20)
 scale = Vector2(1, 1.4)
 shape = SubResource("CapsuleShape2D_4y8vc")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("5_mtbob")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("5_pa3j8")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("6_pdi8b")
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource("7_657tl")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("8_3564l")
+
+[node name="ShootStand" type="Node" parent="StateMachine"]
+script = ExtResource("9_ywu4a")
+
+[node name="ShootUp" type="Node" parent="StateMachine"]
+script = ExtResource("10_x6wvi")
+
+[node name="ShootCouch" type="Node" parent="StateMachine"]
+script = ExtResource("11_fxcqm")
+
+[node name="ShootRun" type="Node" parent="StateMachine"]
+script = ExtResource("13_4hg8s")
+
+[node name="ShootWallCling" type="Node" parent="StateMachine"]
+script = ExtResource("14_crddm")
+
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -20)
+shape = SubResource("CapsuleShape2D_n0mak")
+debug_color = Color(0.946381, 0.0689788, 0.551421, 0.42)
+
+[connection signal="body_entered" from="Hurtbox" to="." method="_on_hurtbox_body_entered"]

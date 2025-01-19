@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://d21r5kdaju4x3"]
+
+[ext_resource type="Script" path="res://player/bullet.gd" id="1_23k4r"]
+
+[node name="Bullet" type="Node2D"]
+script = ExtResource("1_23k4r")
