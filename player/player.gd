@@ -10,10 +10,12 @@ const GRAVITY = 1000
 @export var jump: int = -300
 @export var jump_horizontal_speed: int = 1000
 @export var max_jump_horizontal_speed: int = 300
+@export var jump_count: int = 1
 
 enum State { Idle, Run, Jump }
 
 var current_state: State
+var current_jump_count: int
 
 func _ready():
 	current_state = State.Idle
@@ -58,9 +60,20 @@ func player_run(delta):
 		
 		
 func player_jump(delta):
-	if Input.is_action_just_pressed("jump"):
+	var jump_input: bool = Input.is_action_just_pressed("jump")
+	
+	if is_on_floor() and jump_input:
+		current_jump_count = 0
 		velocity.y = jump
+		current_jump_count += 1
 		current_state = State.Jump
+		
+	if !is_on_floor() and jump_input and current_jump_count < jump_count:
+		velocity.y = jump
+		current_jump_count += 1
+		current_state = State.Jump
+		print("current_jump_count", current_jump_count)
+		print("current_jump_count", jump_count)
 		
 	if !is_on_floor() and current_state == State.Jump:
 		var direction = input_movement()
