@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://l1yb2ptc3h0h"]
+[gd_scene load_steps=10 format=3 uid="uid://l1yb2ptc3h0h"]
 
 [ext_resource type="Texture2D" uid="uid://dw00j6r7cyrqh" path="res://tileset/game_tilesets_1.png" id="1_36gtm"]
 [ext_resource type="PackedScene" uid="uid://ng6656nwho30" path="res://player/player.tscn" id="2_gombn"]
 [ext_resource type="Texture2D" uid="uid://1xdm4gssw8fv" path="res://tileset/props.png" id="2_p6xqd"]
 [ext_resource type="Texture2D" uid="uid://bm06618nj14ks" path="res://tileset/walls.png" id="3_nhbcr"]
+[ext_resource type="Script" path="res://player/player_camera.gd" id="5_h014d"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_kb3ik"]
 texture = ExtResource("1_36gtm")
@@ -269,9 +270,12 @@ layer_2/z_index = 1
 [node name="Player" parent="." instance=ExtResource("2_gombn")]
 position = Vector2(123, -94)
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
+[node name="PlayerCamera2D" type="Camera2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(123, -94)
 limit_left = 0
 limit_top = -348
 limit_right = 1690
 limit_bottom = 0
 editor_draw_limits = true
+script = ExtResource("5_h014d")
+player = NodePath("../Player")
