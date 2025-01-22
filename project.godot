@@ -84,6 +84,7 @@ wall_cling={
 2d_physics/layer_3="ENEMY"
 2d_physics/layer_4="PICKUP"
 2d_physics/layer_5="COLLECTIBLES"
+2d_physics/layer_6="DOORS"
 
 [rendering]
 

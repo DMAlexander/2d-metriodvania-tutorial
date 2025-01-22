@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://jg7in7037kdj"]
+[gd_scene load_steps=8 format=3 uid="uid://jg7in7037kdj"]
 
 [ext_resource type="PackedScene" uid="uid://l1yb2ptc3h0h" path="res://levels/base_level.tscn" id="1_a6un7"]
 [ext_resource type="PackedScene" uid="uid://bnlld8cs8oyc1" path="res://enemies/crab/enemy_crab.tscn" id="2_iykn2"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dnbftdcxrpqsh" path="res://ui/game_screen.tscn" id="4_6a28v"]
 [ext_resource type="PackedScene" uid="uid://j1kck3p0qahr" path="res://pickups/health_pickup/health_pickup.tscn" id="5_8ovow"]
 [ext_resource type="PackedScene" uid="uid://dc3w7cf3rymcq" path="res://collectibles/blue_coin/blue_coin.tscn" id="6_hhutm"]
+[ext_resource type="PackedScene" uid="uid://crchs4i2bu2ou" path="res://levels/door/door.tscn" id="7_36usa"]
 
 [node name="TestLevel" instance=ExtResource("1_a6un7")]
 
@@ -37,3 +38,7 @@ position = Vector2(44, -97)
 
 [node name="BlueCoin3" parent="." index="10" instance=ExtResource("6_hhutm")]
 position = Vector2(18, -97)
+
+[node name="Door" parent="." index="11" instance=ExtResource("7_36usa")]
+position = Vector2(33, -80)
+next_scene = "Level1"

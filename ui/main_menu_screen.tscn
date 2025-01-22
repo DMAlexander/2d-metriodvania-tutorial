@@ -60,8 +60,7 @@ text = "PLAY
 
 [node name="SettingsButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "PLAY
-"
+text = "SETTINGS"
 
 [node name="ExitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
