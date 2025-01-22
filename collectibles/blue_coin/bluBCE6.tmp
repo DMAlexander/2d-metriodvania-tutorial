@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc3w7cf3rymcq"]
+[gd_scene load_steps=12 format=3 uid="uid://dc3w7cf3rymcq"]
 
 [ext_resource type="Script" path="res://collectibles/blue_coin/blue_coin.gd" id="1_uxhqw"]
 [ext_resource type="Texture2D" uid="uid://0y2y41irr7yr" path="res://collectibles/coins-and-gems.png" id="2_3yx4n"]
@@ -53,6 +53,34 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_kdelb"]
 radius = 7.0
 
+[sub_resource type="GDScript" id="GDScript_uor46"]
+script/source = "extends Node
+
+@export var award_amount : int = 1
+
+@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var label: Label = $Label
+
+
+func _ready():
+		
+#	label.hide()
+	
+
+func _on_area_2d_body_entered(body):
+	if body.is_in_group(\"Player\"):
+		print(award_amount)
+		animated_sprite_2d.hide()
+#		label.text = \"%s\" % award_amount
+#		CollectibleManager.give_pickup_award(award_amount)
+		
+#		label.show()
+		
+#		var tween = get_tree().create_tween()
+#		tween.tween_property(label, \"position\", Vector2(label.position.x, label.position.y + -10), 0.5).from_current()
+#		tween.tween_callback(queue_free)
+"
+
 [node name="BlueCoin" type="Node2D"]
 script = ExtResource("1_uxhqw")
 
@@ -78,5 +106,7 @@ offset_right = 20.0
 offset_bottom = 14.0
 text = "1"
 horizontal_alignment = 1
+script = SubResource("GDScript_uor46")
+award_amount = null
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

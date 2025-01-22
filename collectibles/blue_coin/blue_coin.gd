@@ -3,7 +3,8 @@ extends Node
 @export var award_amount : int = 1
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
-@onready var label = $Label
+@onready var label: Label = $Label
+
 
 
 func _ready():

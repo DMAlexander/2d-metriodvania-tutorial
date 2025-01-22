@@ -1,6 +1,70 @@
-[gd_scene load_steps=2 format=3 uid="uid://p3ojqdq82w2s"]
+[gd_scene load_steps=5 format=3 uid="uid://dn465fpebqch4"]
 
-[ext_resource type="Script" path="res://ui/main_menu_screen.gd" id="1_dljbw"]
+[ext_resource type="Texture2D" uid="uid://klfvytw5aey3" path="res://ui/theme/environment-preview.png" id="1_yqhao"]
+[ext_resource type="Theme" uid="uid://b7f6vjx7m0lmp" path="res://ui/theme/game_theme.tres" id="2_ok77d"]
+[ext_resource type="Texture2D" uid="uid://b3tdy6kgxuixa" path="res://ui/player-run-4.png" id="2_vjw6o"]
 
-[node name="MainMenuScreen" type="Node2D"]
-script = ExtResource("1_dljbw")
+[sub_resource type="GDScript" id="GDScript_htsxs"]
+script/source = "extends CanvasLayer
+
+var settings_menu_screen = preload(\"res://ui/settings_menu_screen.tscn\")
+
+func _on_play_button_pressed():
+	GameManager.start_game()
+	queue_free()
+
+
+func _on_exit_button_pressed():
+	GameManager.exit_game()
+	
+	
+func _on_settings_button_pressed():
+	var settings_menu_screen_instance = settings_menu_screen.instantiate()
+	get_tree().get_root().add_child(settings_menu_screen_instance)
+"
+
+[node name="MainMenuScreen" type="CanvasLayer"]
+layer = 2
+script = SubResource("GDScript_htsxs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -300.0
+offset_top = -82.0
+offset_right = 756.0
+offset_bottom = 270.0
+texture = ExtResource("1_yqhao")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ok77d")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "PLAY
+"
+
+[node name="ExitButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "EXIT"
+
+[node name="Player-run-4" type="Sprite2D" parent="."]
+position = Vector2(191, 217)
+texture = ExtResource("2_vjw6o")
+
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]

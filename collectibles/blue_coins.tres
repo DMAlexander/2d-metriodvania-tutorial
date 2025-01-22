@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://dfpkx7vhe4js2"]
+
+[ext_resource type="Texture2D" uid="uid://0y2y41irr7yr" path="res://collectibles/coins-and-gems.png" id="1_d8qwe"]
+
+[resource]
+atlas = ExtResource("1_d8qwe")
+region = Rect2(80, 368, 16, 16)

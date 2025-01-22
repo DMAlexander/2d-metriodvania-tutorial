@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-@onready var collectible_label = $MarginContainer/VBoxContainer/HBoxContainer/CollectibleLabel
+@onready var collectible_label: Label = $MarginContainer/VBoxContainer/HBoxContainer/CollectibleLabel
 
 
 func _ready():
