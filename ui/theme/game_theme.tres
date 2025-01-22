@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b7f6vjx7m0lmp"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b7f6vjx7m0lmp"]
 
 [ext_resource type="FontFile" uid="uid://bn6verotwl2u6" path="res://ui/theme/GravityRegular5.ttf" id="1_a1j5p"]
 
@@ -34,6 +34,17 @@ corner_detail = 5
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r3e18"]
 bg_color = Color(0.926237, 0.069081, 0.572383, 0.529412)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0g3hf"]
+bg_color = Color(0.713726, 0.172549, 0.976471, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l8tfx"]
+bg_color = Color(0.427451, 0.352941, 0.85098, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.231373, 0.0392157, 0.345098, 1)
+
 [resource]
 Button/colors/font_color = Color(0.87451, 0.87451, 0.298039, 1)
 Button/colors/font_disabled_color = Color(0.875, 0.875, 0.875, 0.5)
@@ -64,3 +75,5 @@ MarginContainer/constants/margin_left = 10
 MarginContainer/constants/margin_right = 10
 MarginContainer/constants/margin_top = 10
 PanelContainer/styles/panel = SubResource("StyleBoxFlat_r3e18")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_0g3hf")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_l8tfx")

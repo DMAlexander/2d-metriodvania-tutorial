@@ -21,7 +21,7 @@ func _ready():
 	for resolution in resolutions:
 		resolution_option_button.add_item(resolution)
 		
-#	initialize_controls()
+	initialize_controls()
 
 
 func initialize_controls():

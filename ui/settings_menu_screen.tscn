@@ -1,6 +1,50 @@
-[gd_scene load_steps=2 format=3 uid="uid://bup1adj7rjvm4"]
+[gd_scene load_steps=4 format=3 uid="uid://n7v1k4ammvkg"]
 
+[ext_resource type="Texture2D" uid="uid://klfvytw5aey3" path="res://ui/theme/environment-preview.png" id="1_d3e5r"]
 [ext_resource type="Script" path="res://ui/settings_menu_screen.gd" id="1_ef0w0"]
+[ext_resource type="Theme" uid="uid://b7f6vjx7m0lmp" path="res://ui/theme/game_theme.tres" id="2_0obsn"]
 
-[node name="SettingsMenuScreen" type="Node2D"]
+[node name="SettingsMenuScreen" type="CanvasLayer"]
 script = ExtResource("1_ef0w0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 0.607843, 1, 1)
+offset_left = -300.0
+offset_top = -82.0
+offset_right = 756.0
+offset_bottom = 270.0
+texture = ExtResource("1_d3e5r")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_0obsn")
+
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="WindowModeOptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ResolutionOptionButton" type="OptionButton" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="MainMenuButton" type="Button" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
+process_mode = 3
+layout_mode = 2
+text = "MAIN MENU"
+
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/WindowModeOptionButton" to="." method="_on_window_mode_option_button_item_selected"]
+[connection signal="item_selected" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/ResolutionOptionButton" to="." method="_on_resolution_option_button_item_selected"]
+[connection signal="pressed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
